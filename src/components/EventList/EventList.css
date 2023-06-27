@@ -1,0 +1,22 @@
+.event-list {
+	display: flex;
+	/* border: solid pink; */
+	gap: 10px;
+	overflow: scroll;
+	/* flex-direction: column; */
+}
+
+.event-list::-webkit-scrollbar {
+	/* width: 0px; */
+	display: none;
+}
+
+/* .content::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 0px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #d4aa70;
+  border-radius: 0px;
+} */
