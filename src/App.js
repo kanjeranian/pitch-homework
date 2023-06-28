@@ -43,13 +43,18 @@ const App = () => {
           </select>
         </div>
       <div className='eventlist-container'>
-        <p>with mock data</p>
+        <p>Case: with JSON mock data</p>
         <EventList events={mockData.data} isSortedByEventDateAsc={isSortedByEventDateAsc} isLoading={false} />
       </div>
 
       <div className='eventlist-container'>
-        <p>with mock api</p>
+        <p>Case: with mock api</p>
         <EventList events={data} isSortedByEventDateAsc={isSortedByEventDateAsc} isLoading={isLoading}/>
+      </div>
+
+      <div className='eventlist-container'>
+        <p>Case: empty data</p>
+        <EventList events={[]} isSortedByEventDateAsc={isSortedByEventDateAsc} isLoading={isLoading}/>
       </div>
     </div>
   );
