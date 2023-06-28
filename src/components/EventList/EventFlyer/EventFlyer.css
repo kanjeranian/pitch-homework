@@ -1,7 +1,6 @@
 .event-flyer {
 	display: flex;
 	flex-direction: column;
-	/* border: solid black; */
 	background-color: #F3F3F3;
 	border-radius: 12px;
 	min-width: 300px;
@@ -11,35 +10,68 @@
 }
 
 .cover {
-	height: 200px;
+	height: 40%;
 	width: 100%;
+  position: relative;
 }
 
 .cover-img {
-	height: inherit;
+	height: 100%;
 	width: 100%;
 	object-fit: cover;
 }
 
+.cover::after {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	height: auto;
+  background: linear-gradient(rgba(2,62,120, 0), rgba(2,62,120, 1)); 
+  z-index: 3; 
+}
+
 .content {
+	height: 60%;
+	padding: 0px 12px;
+  position: relative;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	height: 10%;
+  background: linear-gradient(rgba(243, 243, 243, 1), rgba(243, 243, 243, 0)); 
+  z-index: 2; 
+}
+
+.content::after {
+  content: "";
+  position: absolute;
+  top: 75%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	height: auto;
+  background: linear-gradient(rgba(243, 243, 243, 0), rgba(243, 243, 243, 1)); 
+  z-index: 2; 
+}
+
+.content-scrollable {
+	height: 100%;
 	overflow-y: scroll;
-	overflow-x: hidden;
-	padding: 12px;
+  overflow-x: hidden;
 }
 
-.content::-webkit-scrollbar {
-  width: 0px;
+.content-scrollable::-webkit-scrollbar {
+  display: none;
 }
-
-/* .content::-webkit-scrollbar-track {
-  background-color: #e4e4e4;
-  border-radius: 10px;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background-color: #d4aa70;
-  border-radius: 10px;
-} */
 
 .event-name {
 	color: #023E78;

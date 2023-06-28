@@ -16,12 +16,20 @@ const EventFlyer = ({ event }) => {
 	return (
 		<div className='event-flyer'>
 			<div className='cover'>
-				<img className='cover-img' src={event.imageUrl} />
+				<img
+					className='cover-img'
+					src={event.imageUrl}
+					onError={({ currentTarget }) => {
+						currentTarget.onerror = null;
+						currentTarget.src = "https://www.ninetechno.com/a/images/2021/computer-word/default.png";
+					}} />
 			</div>
 			<div className='content'>
-				<p className='event-name'>{event.name}</p>
-				<p className='event-date'>{formattedEventDate} </p>
-				<p>{event.description}</p>
+				<div className='content-scrollable'>
+					<p className='event-name'>{event.name}</p>
+					<p className='event-date'>{formattedEventDate} </p>
+					<p>{event.description}</p>
+				</div>
 			</div>
 		</div>
 	);

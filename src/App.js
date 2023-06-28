@@ -1,25 +1,31 @@
 // import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import { EventList } from './components';
 import mockData from './mockData.json'
 function App() {
+  const [isSortedByEventDateAsc, setIsSortedByEventDateAsc] = useState(true)
+	const sortingOptions = [
+		{ label: 'Ascending', value: true },
+		{ label: 'Descending', value: false }
+	]
+
   return (
     <div className="App">
-      <EventList events={mockData.data}/>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      <div className='eventlist-container'>
+        <div className='sorter-container'>
+          <div className='dropdown-label'>Sorted by event dates </div>
+          <select
+            className='select'
+            value={isSortedByEventDateAsc}
+            onChange={e => setIsSortedByEventDateAsc(e.target.value === 'true')}>
+            {sortingOptions.map(o => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
+        <EventList events={mockData.data} isSortedByEventDateAsc={isSortedByEventDateAsc} />
+      </div>
     </div>
   );
 }
