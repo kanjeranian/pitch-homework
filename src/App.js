@@ -1,4 +1,3 @@
-// import logo from './logo.svg'; // oildel
 import { useEffect, useState } from 'react';
 import './App.css';
 import { EventList } from './components';
@@ -8,6 +7,7 @@ import mockData from './mockData.json'
 const App = () => {
   const [data, setData] = useState([])
   const [isSortedByEventDateAsc, setIsSortedByEventDateAsc] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
 	const sortingOptions = [
 		{ label: 'Ascending', value: true },
@@ -15,15 +15,19 @@ const App = () => {
 	]
 
   const getData = async () => {
-    const res = await axios.get('https://dev-26t476807dsa2ns.api.raw-labs.com/test')
-    setData(res.data.data)
+    try{
+      setIsLoading(true)
+      const res = await axios.get('https://dev-26t476807dsa2ns.api.raw-labs.com/test')
+      setData(res.data.data)
+      setIsLoading(false)
+    }catch(err){
+      setIsLoading(false)
+    }
   }
 
   useEffect(()=>{
     getData()
   }, [])
-
-  getData()
 
   return (
     <div className="App">
@@ -40,12 +44,12 @@ const App = () => {
         </div>
       <div className='eventlist-container'>
         <p>with mock data</p>
-        <EventList events={mockData.data} isSortedByEventDateAsc={isSortedByEventDateAsc} />
+        <EventList events={mockData.data} isSortedByEventDateAsc={isSortedByEventDateAsc} isLoading={false} />
       </div>
 
       <div className='eventlist-container'>
         <p>with mock api</p>
-        <EventList events={data} isSortedByEventDateAsc={isSortedByEventDateAsc} />
+        <EventList events={data} isSortedByEventDateAsc={isSortedByEventDateAsc} isLoading={isLoading}/>
       </div>
     </div>
   );

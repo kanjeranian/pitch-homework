@@ -3,7 +3,7 @@ import EventFlyer from './EventFlyer/EventFlyer';
 import './EventList.css';
 import { DateTime } from 'luxon';
 
-const EventList = ({ events, isSortedByEventDateAsc }) => {
+const EventList = ({ events, isSortedByEventDateAsc, isLoading }) => {
 
   const [sortedEvents, setSortedEvents] = useState([]);
 
@@ -19,14 +19,21 @@ const EventList = ({ events, isSortedByEventDateAsc }) => {
     sortEvents();
   }, [events, isSortedByEventDateAsc]);
 
+  if (isLoading) {
+    return (
+      <div className='event-list-container'>
+        <div className='loading'>Loading...</div>
+      </div>)
+  }
+
   return (
     <div className='event-list-container'>
-  {   events.length > 1 ? <div className='event-list'>
+      {events && events.length > 1 ? <div className='event-list'>
         {isSortedByEventDateAsc}
         {sortedEvents.map((eachEvent) => {
           return <EventFlyer event={eachEvent} key={'event' + eachEvent.id} />
         })}
-      </div> : <div className='loading'>Loading...</div>}
+      </div> : <div className='empty'>Empty event. Please try again later.</div>}
     </div>
   );
 }
