@@ -20,7 +20,6 @@ const EventFlyer = ({ event }) => {
           className='cover-img'
           src={event.imageUrl}
           loading='lazy'
-          PlaceholderSrc={defaultImage}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src = defaultImage;
