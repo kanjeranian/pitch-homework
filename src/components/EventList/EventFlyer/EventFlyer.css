@@ -4,8 +4,7 @@
 	background-color: #F3F3F3;
 	border-radius: 12px;
 	min-width: 300px;
-	max-width: 350px;
-	max-height: 400px;
+	height: 100%;
 	overflow: hidden;
 }
 

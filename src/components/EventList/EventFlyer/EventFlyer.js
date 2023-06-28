@@ -19,6 +19,7 @@ const EventFlyer = ({ event }) => {
 				<img
 					className='cover-img'
 					src={event.imageUrl}
+					// loading='lazy'
 					onError={({ currentTarget }) => {
 						currentTarget.onerror = null;
 						currentTarget.src = "https://www.ninetechno.com/a/images/2021/computer-word/default.png";

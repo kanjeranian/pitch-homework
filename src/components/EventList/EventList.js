@@ -8,7 +8,6 @@ const EventList = ({ events, isSortedByEventDateAsc }) => {
   const [sortedEvents, setSortedEvents] = useState([]);
 
   useEffect(() => {
-    console.log('value', isSortedByEventDateAsc)
     const sortEvents = () => {
       const sorted = [...events].sort((a, b) => {
         const dateA = DateTime.fromISO(a.date);
@@ -22,12 +21,12 @@ const EventList = ({ events, isSortedByEventDateAsc }) => {
 
   return (
     <div className='event-list-container'>
-      <div className='event-list'>
+  {   events.length > 1 ? <div className='event-list'>
         {isSortedByEventDateAsc}
         {sortedEvents.map((eachEvent) => {
           return <EventFlyer event={eachEvent} key={'event' + eachEvent.id} />
         })}
-      </div>
+      </div> : <div className='loading'>Loading...</div>}
     </div>
   );
 }

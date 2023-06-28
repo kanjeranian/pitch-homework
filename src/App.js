@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { EventList } from './components';
 import axios from 'axios';
+import mockData from './mockData.json'
 
 const App = () => {
   const [data, setData] = useState([])
   const [isSortedByEventDateAsc, setIsSortedByEventDateAsc] = useState(true)
-  
+
 	const sortingOptions = [
 		{ label: 'Ascending', value: true },
 		{ label: 'Descending', value: false }
@@ -26,7 +27,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className='eventlist-container'>
         <div className='sorter-container'>
           <div className='dropdown-label'>Sorted by event dates </div>
           <select
@@ -38,6 +38,13 @@ const App = () => {
             ))}
           </select>
         </div>
+      <div className='eventlist-container'>
+        <p>with mock data</p>
+        <EventList events={mockData.data} isSortedByEventDateAsc={isSortedByEventDateAsc} />
+      </div>
+
+      <div className='eventlist-container'>
+        <p>with mock api</p>
         <EventList events={data} isSortedByEventDateAsc={isSortedByEventDateAsc} />
       </div>
     </div>
